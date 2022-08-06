@@ -3,17 +3,13 @@
 {% block productos %}
 
 {% for producto in productos  %}
-<div class="col mb-5">
-    <div class="card h-100">
         <!-- Product image-->
-        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+        <img class="card-img-top" src="https://yt3.ggpht.com/ytc/AMLnZu9fSLS8PMsxM9BAFJXk6DzSJNefQsPyxAVJn_cxFA=s900-c-k-c0x00ffffff-no-rj" alt="..." />
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">
                 <!-- Product name-->
-                <h5 class="fw-bolder">{{producto.nombre}}</h5>
-                <!-- Product reviews-->
-                
+                <h5 class="fw-bolder">{{producto.nombre}}</h5>                
                 <!-- Product price-->
                 $ {{producto.precio}}
             </div>

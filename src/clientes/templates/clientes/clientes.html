@@ -1,0 +1,21 @@
+{% extends 'productos/base.html' %}
+
+{% block productos %}
+
+{% for cliente in clientes  %}
+        
+        <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">{{cliente.nombre}}  {{cliente.apellido}}</h5>                
+                
+                Contacto: {{cliente.email}}
+            </div>
+        </div>
+
+
+{% endfor %}
+
+<li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'crearusuario'%}">Cargar Clientes</a></li>
+
+{% endblock %}

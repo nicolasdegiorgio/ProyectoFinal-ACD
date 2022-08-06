@@ -36,3 +36,10 @@ def crear_usuario(request):
         #Por ahora no es necesario
         else:
             return HttpResponse (f'usuario no valido')
+        
+        
+def ver_clientes(request):
+    
+    listado_clientes = Usuarios.objects.all()
+    return render(request, 'clientes/clientes.html', {'clientes': listado_clientes})
+    
