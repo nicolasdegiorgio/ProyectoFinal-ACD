@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+#Productos va a ser la pagina principal
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('productos/', include('productos.urls')),
+    path('', include('productos.urls')),
     path('clientes/', include('clientes.urls')),
 ]
