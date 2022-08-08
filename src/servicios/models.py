@@ -4,6 +4,6 @@ from django.db import models
 
 class Detailing (models.Model):
     
-    cliente = models.IntegerField(max_length=30) #se va a identificar con el documento
-    turno = models.DateField()
-    status = models.BooleanField()
+    cliente = models.IntegerField() #se va a identificar con el documento
+    turno = models.CharField(max_length=30)
+    status = models.CharField(max_length=30)
