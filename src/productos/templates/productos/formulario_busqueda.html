@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% block productos %}
+
+<form method="post">{% csrf_token %}
+
+    <p>
+        Indique un producto:
+        <input type="text" name="producto">
+    </p>
+
+    <input type="submit" value="Buscar">
+</form>
+
+{% endblock %}

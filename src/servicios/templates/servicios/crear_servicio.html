@@ -1,0 +1,12 @@
+{% extends 'productos/base.html' %}
+
+{% block productos %}
+
+<form method="post">{% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <input type="submit" value="Cargar">
+</form>
+
+{% endblock %}

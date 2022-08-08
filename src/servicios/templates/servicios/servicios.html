@@ -1,0 +1,20 @@
+{% extends 'productos/base.html' %}
+
+{% block productos %}
+
+{% for servicio in servicios  %}
+        
+        <img class="card-img-top" src="https://images.pexels.com/photos/3264504/pexels-photo-3264504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="..." />
+            <div class="card-body p-4">
+                <div class="text-center">
+                
+                    <h5 class="fw-bolder">{{servicio.nombre}}</h5>                
+                
+                $ {{servicio.precio}}
+            </div>
+        </div>
+
+
+{% endfor %}
+
+{% endblock %}

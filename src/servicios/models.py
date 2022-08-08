@@ -1,5 +1,4 @@
 from django.db import models
-from clientes.models import Usuarios
 # Create your models here.
 
 
