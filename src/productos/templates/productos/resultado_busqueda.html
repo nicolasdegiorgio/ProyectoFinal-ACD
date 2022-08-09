@@ -3,7 +3,8 @@
 {% block productos %}
 
     {% for producto in productos %}
-        <p>{{producto.nombre}}</p>
+        <h5 style="color: blue ">{{producto.nombre}}</h5>
+        <p> $ {{producto.precio}}</p>
     {%endfor%}  
 
 {% endblock %}

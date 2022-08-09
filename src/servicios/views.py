@@ -22,7 +22,7 @@ def cargar_servicio(request):
     #se envia el formulario a través de POST
     else:
 
-        formulario = CargaProducto(request.POST)
+        formulario = CargaServicio(request.POST)
 
         if formulario.is_valid():
             
@@ -32,7 +32,7 @@ def cargar_servicio(request):
             turno = data.get("turno")
             status = data.get('status')
             
-            servicio = Detailing(nombre = cliente, turno = turno, status = status)
+            servicio = Detailing(cliente = cliente, turno = turno, status = status)
 
             servicio.save()
 

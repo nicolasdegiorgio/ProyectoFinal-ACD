@@ -2,7 +2,7 @@
 
 {% block productos %}
 
-<form method="post">{% csrf_token %}
+<form action="{% url 'resultado_busqueda' %}" method="get">{% csrf_token %}
 
     <p>
         Indique un producto:

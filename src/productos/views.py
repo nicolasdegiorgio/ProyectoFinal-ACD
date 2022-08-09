@@ -55,8 +55,10 @@ def buscar(request):
     if not producto_nombre:
         return HttpResponse("No indicaste ningun nombre")
 
-    else:
-        producto_lista = ProductosDetailing.objects.filter(nombre__icontains=producto_nombre)
+    producto_lista = ProductosDetailing.objects.filter(nombre__icontains=producto_nombre)
+    
+    # else:
+    #     producto_lista = ProductosDetailing.objects.filter(nombre__icontains=producto_nombre)
 
         
-        return render(request, "productos/resultado_busqueda.html", {"productos": producto_lista})
+    return render(request, "productos/resultado_busqueda.html", {"productos": producto_lista})
