@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 #Productos va a ser la pagina principal
@@ -24,3 +26,6 @@ urlpatterns = [
     path('clientes/', include('clientes.urls')),
     path('servicios/', include('servicios.urls')),
 ]
+
+
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,18 +1,34 @@
 from django.shortcuts import render
-from productos.forms import CargaProducto, FormularioBusqueda
 from django.http import HttpResponse
 
-from productos.models import ProductosDetailing
+#Forms 
+from productos.forms import CargaProducto, FormularioBusqueda
 
-# Create your views here.
+#Decorators
+from django.contrib.auth.decorators import login_required
+
+
+#Models
+from productos.models import ProductosDetailing
+from clientes.models import Avatar
+
+
 #Vista de inicio
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
+    context = {
+        'productos': listado_productos
+    }
     
-    return render (request, 'productos/index.html', {'productos': listado_productos})
+    if not request.user.is_anonymous:
+        avatar = Avatar.objects.filter(usuario = request.user ).last()
+        context.update({"avatar": avatar})
+    
+    return render (request, 'productos/index.html', context)
 
 #Vista de carga de producto
+@login_required
 def cargar_producto(request):
     #El primer paso para crear el formulario de carga
     if request.method == "GET":
@@ -56,9 +72,6 @@ def buscar(request):
         return HttpResponse("No indicaste ningun nombre")
 
     producto_lista = ProductosDetailing.objects.filter(nombre__icontains=producto_nombre)
-    
-    # else:
-    #     producto_lista = ProductosDetailing.objects.filter(nombre__icontains=producto_nombre)
 
         
     return render(request, "productos/resultado_busqueda.html", {"productos": producto_lista})
