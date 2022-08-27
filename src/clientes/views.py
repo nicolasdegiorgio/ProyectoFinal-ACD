@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from clientes.forms import CrearUsuario
-from clientes.models import Usuarios
+from clientes.models import Usuarios, Avatar
 
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 
 #Imports para registros y logeo de usuarios
-from clientes.forms import UserCustomCreation, UserEditForm, Avatar
+from clientes.forms import UserCustomCreationForm, UserEditForm, AvatarForm
 
 
 #Permisos usuarios
@@ -56,19 +56,29 @@ def ver_clientes(request):
     
     
 def resgistrar_usuario(request):
+    
     if request.method == 'GET':
-        formulario = UserCustomCreation()
-        return render (request, 'clientes/authentication/registro.html')
+        formulario = UserCustomCreationForm()
+        context = {
+            'formulario' : formulario
+        }
+        return render (request, 'clientes/authentication/registro.html', context)
     else:
         #obetiene la data del envio POST
-        formulario = UserCustomCreation(request.POST)
+        formulario = UserCustomCreationForm(request.POST)
         
         #verifica la validez del formulario
         if formulario.is_valid():
             formulario.save()
             return redirect ('inicio')
+        else:
+            context ={
+                "formulario": formulario, 
+                "error": "Formulario NO valido"
+                }
+            return render(request, "clientes/autentication/registro.html", context)
         
-def login (request):
+def iniciar_sesion (request):
     if request.method == 'GET':
         formulario = AuthenticationForm()
         
@@ -150,17 +160,17 @@ def modificar_usuario(request):
         
 
 @login_required
-def avatar (request):
+def agregar_avatar (request):
     
     if request.method == 'GET':
-        formulario = Avatar()
+        formulario = AvatarForm()
         context ={
             'formulario':formulario
         }
         return render (request, 'clientes/authentication/agregar_avatar.html', context)
     
     else:
-        formulario = Avatar(request.POST, request.FILES)
+        formulario = AvatarForm(request.POST, request.FILES)
         
         if formulario.is_valid():
             data = formulario.cleaned_data
@@ -172,9 +182,9 @@ def avatar (request):
             
             return redirect('inicio')
         
-        else:
-            context = {
-                'formulario': formulario
-                }           
-            
-            return render(request, 'clientes/usuarios/agregar_avatar.html', context)
+        
+        context = {
+            'formulario': formulario
+            }           
+        
+        return render(request, 'clientes/usuarios/agregar_avatar.html', context)

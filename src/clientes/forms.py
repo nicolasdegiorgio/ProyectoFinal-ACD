@@ -11,17 +11,16 @@ class CrearUsuario (Form):
     documento = IntegerField()
     email = EmailField( max_length=254)
     
-class UserCustomCreation(UserCreationForm):
-    first_name = CharField(label='Nombre')
-    last_name = CharField(label='Apellido')
+class UserCustomCreationForm(UserCreationForm):
     email = EmailField()
     password1 = CharField(label='Contraseña', widget=PasswordInput)
     password2 = CharField(label='Repita la contraseña', widget=PasswordInput)
-    
+    first_name = CharField(label='Nombre')
+    last_name = CharField(label='Apellido')
     class Meta:
         model = User
-        fields = ['first_name','last_name', 'email', 'password1', 'password2']
-        help_text = {'first_name':'Nombre completo','last_name': 'Apellido', 'email':'ingrese su email principal', 'password1':'', 'password2':''}
+        fields = ['username','email', 'password1', 'password2','first_name','last_name']
+        help_text = {'email':'', 'password1':'', 'password2':''}
         
 class UserEditForm(UserCreationForm):
     first_name = CharField(label='Nombre')
@@ -36,6 +35,6 @@ class UserEditForm(UserCreationForm):
         help_text = {'first_name':'Nombre completo','last_name': 'Apellido', 'email':'ingrese su email principal', 'password1':'', 'password2':''}
         
         
-class Avatar(Form):
+class AvatarForm(Form):
     imagen = ImageField()
         
