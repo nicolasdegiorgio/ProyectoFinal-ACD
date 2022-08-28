@@ -4,6 +4,15 @@ urlpatterns = [
     path("", index, name= 'inicio'),
     path("cargarproducto/", cargar_producto, name= 'cargaproducto'),
     path('busqueda/', formulario_busqueda, name='buscar_producto'),
-    path('resultados/', buscar, name='resultado_busqueda')
+    path('resultados/', buscar, name='resultado_busqueda'),
+    
+    
+    #Generic
+    path('todos/', ProductosList.as_view(), name = 'productos_lista'),
+    path('cargar/', ProductosCrear.as_view(), name = 'productos_crear'),
+    path('detalle/<pk>', ProductosDetalle.as_view(), name = 'productos_detalle'),
+    path('actualizar/<pk>', ProductosModificar.as_view(), name = 'productos_modificar'),
+    path('borrar/<pk>', ProductosDelete.as_view(), name = 'productos_borrar'),
+    
     
 ]

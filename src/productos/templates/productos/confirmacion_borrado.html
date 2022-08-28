@@ -1,0 +1,15 @@
+{% extends 'productos/base.html' %}
+
+{% block contenido %}
+    
+    <form method="post">
+        
+        {% csrf_token %}
+
+        <p>Se eliminará {{object}}</p>
+        <input type="submit" value="Confirmar">
+        <a href="{% url 'productos' %}">Volver</a>
+
+    </form>
+
+{% endblock contenido %}

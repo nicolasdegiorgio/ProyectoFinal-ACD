@@ -126,7 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = "/clientes/authentication/login/"
+LOGIN_URL = "/clientes/authentication/inicio_sesion/"
 
 #Configuración para imágenes
 MEDIA_URL = '/media/'

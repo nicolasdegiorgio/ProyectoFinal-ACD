@@ -29,21 +29,30 @@
                         
                         {% if request.user.is_authenticated %}
                         
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'buscar_producto' %}">Buscar</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'cargaproducto' %}">Cargar productos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'productos_lista' %}">Todos</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'inicio_servicios' %}">Servicios</a></li>
-                                <li><a class="dropdown-item" href="{% url 'carga_servicios' %}">Crear Servicios</a></li>
-                                <li><a class="dropdown-item" href="{% url 'clientes'%}">Clientes</a></li>
+                                <li><a class="dropdown-item" href="{% url 'productos_crear' %}">Cargar</a></li>
+                                <li><a class="dropdown-item" href="{% url 'buscar_producto' %}">Buscar</a></li>
+                                <li><a class="dropdown-item" href="{% url 'agregar_avatar'%}">Avatar</a></li>
                                 
                             </ul>
                         </li>
-                        <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a>
-                        
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Hola {{request.user}}!</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'modificar_usuario' %}">Editar tus opciones</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'agregar_avatar'%}">Avatar</a></li>
+                                <li><a class="btn btn-primary text-center" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                        <img src="{{imagen }}" alt="Avatar">
+
                         {% else %}
 
                         <a class="btn btn-primary" href="{% url 'login' %}">Iniciar sesión</a>
@@ -61,15 +70,6 @@
                 </div>
             </div>
 
-
-            {% if request.user.is_authenticated %}
-            <div class="container text-center">
-                <p style="color: green; font-size: 22px;font-weight: 100px;">Bienvenid@ {{request.user}}</p>
-                <img src="{{imagen}}" alt="Avatar">
-            </div>
-            {% endif %}
-
-            
         
         </nav>
 

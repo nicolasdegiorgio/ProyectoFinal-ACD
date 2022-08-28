@@ -129,7 +129,7 @@ def modificar_usuario(request):
         context = {
             'formulario' : formulario
         }
-        return render(request, 'clientes/autentication/modificar_usuario.html', context)
+        return render(request, 'clientes/authentication/modificar_usuario.html', context)
     
     else:
         
@@ -176,7 +176,7 @@ def agregar_avatar (request):
             data = formulario.cleaned_data
             
             usuario = User.objects.filter(username=request.user.username).first()
-            avatar = Avatar (usuario=usuario, imagen = data['imagen'])
+            avatar = Avatar (usuario=usuario, imagen = data["imagen"])
             
             avatar.save()
             
