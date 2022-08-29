@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from itertools import product
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 
 #Generic views
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 #Forms 
-from productos.forms import CargaProducto, FormularioBusqueda
+from productos.forms import CargaProducto, FormularioBusqueda, CommentForm
 
 #Decorators
 from django.contrib.auth.decorators import login_required
@@ -15,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 #Models
-from productos.models import ProductosDetailing
+from productos.models import ProductosDetailing, Comentarios
 from clientes.models import Avatar
 
 
@@ -23,6 +24,14 @@ from clientes.models import Avatar
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
+    # listado_productos_descuento = []
+    
+    # for producto in listado_productos:
+    #     if producto.descuento != 0:
+    #         producto = ProductosDetailing.aplicar_descuento
+    #         listado_productos_descuento.append(producto)
+        
+    
     context = {
         'productos': listado_productos
     }
@@ -92,7 +101,41 @@ class ProductosList (ListView):
         context = super(ProductosList,self).get_context_data(**kwargs)
         context ['productos'] = ProductosDetailing.objects.all()
         return context
+
+
+@login_required    
+def producto_detalle(request, pk):
+
+    producto = get_object_or_404(ProductosDetailing, pk=pk)
+    comentarios = Comentarios.objects.filter(producto=producto)
+    context = {
+        'producto': producto
+    }
     
+    
+    if request.method == 'GET':
+        formulario = CommentForm()
+        
+        context ={
+            'formulario':formulario,
+            'comentarios' : comentarios,
+            'producto': producto
+        }
+        return render (request, 'productos/productos_detalle.html', context)
+    
+    
+    else:
+        formulario = CommentForm(request.POST or None)
+        
+        if formulario.is_valid():
+            contenido = request.POST.get('contenido')
+            comentario = Comentarios.objects.create(producto = producto, usuario = request.user, contenido = contenido)
+            comentario.save()
+        return redirect('inicio')
+       
+        #return render(request, 'socio / post_detail.html', context)
+
+
 class ProductosDetalle (DetailView):
     model = ProductosDetailing
     template_name = 'productos/productos_detalle.html'
@@ -116,3 +159,7 @@ class ProductosDelete (LoginRequiredMixin, DeleteView):
     model = ProductosDetailing
     success_url = '/productos/'
     template_name = 'productos/confirmacion_borrado.html'
+    
+    
+    
+    

@@ -10,7 +10,7 @@ urlpatterns = [
     #Generic
     path('todos/', ProductosList.as_view(), name = 'productos_lista'),
     path('cargar/', ProductosCrear.as_view(), name = 'productos_crear'),
-    path('detalle/<pk>', ProductosDetalle.as_view(), name = 'productos_detalle'),
+    path('detalle/<int:pk>/', producto_detalle, name = 'productos_detalle'),
     path('actualizar/<pk>', ProductosModificar.as_view(), name = 'productos_modificar'),
     path('borrar/<pk>', ProductosDelete.as_view(), name = 'productos_borrar'),
     

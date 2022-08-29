@@ -20,7 +20,7 @@
                     <!-- Product price-->
                     
                     {{producto.precio}}
-                    <a href="{% url 'productos_detalle' producto.id %}"> Ver mas</a>
+                    <a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a>
                     <a href="{% url 'productos_modificar' producto.id %}"> Editar</a>
                     <a href="{% url 'productos_borrar' producto.id %}"> Eliminar</a>
                 </div>

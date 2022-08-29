@@ -1,5 +1,8 @@
-from django.forms import Form, CharField, IntegerField, FloatField
+from django.forms import Form, CharField, IntegerField, FloatField, Textarea, ModelForm
+from django.contrib.auth.models import User
+from datetime import datetime
 
+from productos.models import Comentarios
 
 class CargaProducto (Form):
     nombre = CharField(max_length=150)
@@ -12,3 +15,9 @@ class CargaProducto (Form):
 class FormularioBusqueda(Form):
     
     nombre_producto = CharField(max_length=150)
+    
+    
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comentarios
+        fields=['contenido']

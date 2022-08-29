@@ -6,5 +6,31 @@
 
 <p>Nombre: {{producto.nombre}}</p>
 
+<div class="main-comment-section">
+  {{ comentarios.count }}
+  {% for comment in comentarios %}
+    <blockquote class="blockquote">
+        <p class="mb-0">{{ comment.contenido }}</p>
+        <p></p>
+        <footer class="blockquote-footer">by {{ comment.usuario }}</footer>
+      </blockquote>
+  {% endfor %}
+</div>
+
+
+
+<h3 color="black">Contanos que te pareció!</h3>
+<form method="POST">
+    {% csrf_token %}
+
+      {{formulario.as_p}}
+
+      <input type="submit" name="comment" class="btn btn-warning">
+    
+  </form> 
+
+
+
+
 
 {% endblock productos %}
