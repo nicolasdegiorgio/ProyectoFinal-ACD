@@ -24,21 +24,21 @@ from clientes.models import Avatar
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
-    # listado_productos_descuento = []
+    listado_productos_descuento = []
     
-    # for producto in listado_productos:
-    #     if producto.descuento != 0:
-    #         producto = ProductosDetailing.aplicar_descuento
-    #         listado_productos_descuento.append(producto)
+    for producto in listado_productos:
+        if producto.descuento != 0:
+            producto = ProductosDetailing.aplicar_descuento(self=producto)
+            listado_productos_descuento.append(producto)
         
     
     context = {
-        'productos': listado_productos
+        'productos': listado_productos_descuento
     }
     
     if not request.user.is_anonymous:
         avatar = Avatar.objects.filter(usuario = request.user ).last()
-        context.update({"avatar": avatar})
+        context.update({"imagen": avatar})
     
     return render (request, 'productos/index.html', context)
 
@@ -133,7 +133,7 @@ def producto_detalle(request, pk):
             comentario.save()
         return redirect('inicio')
        
-        #return render(request, 'socio / post_detail.html', context)
+        
 
 
 class ProductosDetalle (DetailView):
@@ -143,15 +143,15 @@ class ProductosDetalle (DetailView):
 
 class ProductosCrear (LoginRequiredMixin, CreateView):
     model = ProductosDetailing
-    success_url = '/productos/'
-    fields = ['nombre','marca','precio','tipo','stock']
+    success_url = '/'
+    fields = ['nombre','marca','precio','tipo','stock', 'descuento', 'imagen']
     template_name = 'productos/productos_crear.html'
     
     
 class ProductosModificar (LoginRequiredMixin, UpdateView):
     model = ProductosDetailing
     success_url = '/'
-    fields = ['nombre','marca','precio','tipo','stock']
+    fields = ['nombre','marca','precio','tipo','stock', 'descuento', 'imagen']
     template_name = 'productos/productos_crear.html'
     
     

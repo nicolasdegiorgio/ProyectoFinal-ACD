@@ -11,6 +11,8 @@ class ProductosDetailing (models.Model):
     stock = models.IntegerField(default=50)
     descuento = models.IntegerField(default=0)
     fecha_carga = models.DateTimeField(auto_now_add=True, null=True)
+    imagen = models.ImageField(upload_to = 'productos_imagenes', null = True)
+    
     
     #Defino el str para ver en el panel de administración
     def __str__(self) -> str:
@@ -23,6 +25,7 @@ class ProductosDetailing (models.Model):
             nuevo_precio = self.precio*(1-self.descuento/100)
             self.precio = nuevo_precio
             self.save
+            return self
             
 
 class Comentarios(models.Model):

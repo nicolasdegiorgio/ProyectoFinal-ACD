@@ -184,7 +184,8 @@ def agregar_avatar (request):
         
         
         context = {
-            'formulario': formulario
+            'formulario': formulario,
+            'imagen': avatar
             }           
         
-        return render(request, 'clientes/usuarios/agregar_avatar.html', context)
+        return render(request, 'productos/index.html', context)

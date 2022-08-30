@@ -4,7 +4,7 @@
 
 {% for producto in productos  %}
         <!-- Product image-->
-        <img class="card-img-top" src="https://yt3.ggpht.com/ytc/AMLnZu9fSLS8PMsxM9BAFJXk6DzSJNefQsPyxAVJn_cxFA=s900-c-k-c0x00ffffff-no-rj" alt="..." />
+        <img class="card-img-top" src="/media/{{producto.imagen}}" alt="..." />
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">
@@ -13,6 +13,7 @@
                 <!-- Product price-->
                 $ {{producto.precio}}
                 <p>Stock: {{producto.stock}}</p>
+                <p><a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a></p>
             </div>
         </div>
 

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
+        <title>{%block title%}Shop Homepage - Start Bootstrap Template{%endblock%}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -51,7 +51,7 @@
                                 <li><a class="btn btn-primary text-center" href="{% url 'logout' %}">Cerrar sesión</a></li>
                             </ul>
                         </li>
-                        <img src="{{imagen }}" alt="Avatar">
+                        <img src="/media/{{imagen}}" alt="avatar">
 
                         {% else %}
 
@@ -289,6 +289,16 @@
                 </div>
             </div>
         </section>
+
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                {% block comentarios %}
+                {% endblock %}
+            </div>
+        </section>
+
+
+
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
