@@ -1,7 +1,8 @@
-from datetime import datetime,timezone
-from django.db import models
-from django.contrib.auth.models import User
+from datetime import datetime, timezone
+
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
+from django.db import models
 
 
 # Create your models here.
@@ -11,7 +12,6 @@ class ProductosDetailing (models.Model):
     precio = models.FloatField()
     tipo = models.CharField(max_length=20, default='Detailing')
     stock = models.IntegerField(default=50)
-    descuento = models.IntegerField(default=0)
     fecha_carga = models.DateTimeField(auto_now_add=True, null=True)
     imagen = models.ImageField(upload_to = 'productos_imagenes', null = True)
     descripcion = RichTextField(null=True)
@@ -22,13 +22,7 @@ class ProductosDetailing (models.Model):
         return f'Nombre: {self.nombre} - Precio: ${self.precio}'
     
     
-    def aplicar_descuento (self):
-        
-        if self.descuento > 0:
-            nuevo_precio = self.precio*(1-self.descuento/100)
-            self.precio = nuevo_precio
-            self.save
-            return self
+
             
 
 class Comentarios(models.Model):

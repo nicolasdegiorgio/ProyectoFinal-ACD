@@ -35,22 +35,20 @@ def base(request):
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
-    listado_productos_descuento = []
+    listado_productos_nuevo = []
     
-    for producto in listado_productos:
-        if producto.descuento != 0:
-            producto = ProductosDetailing.aplicar_descuento(self=producto)
-            listado_productos_descuento.append(producto)
+    for i,producto in enumerate(listado_productos[::-1]):
+        if i <= 1:
+            listado_productos_nuevo.append(producto)
+        
         
     avatar = Avatar.objects.filter(usuario = request.user ).last()
     
     context = {
-        'productos': listado_productos_descuento,
+        'productos': listado_productos_nuevo,
         'avatar':avatar
     }
-    
-    
-    
+       
     return render (request, 'productos/index.html', context)
 
         
@@ -118,14 +116,14 @@ def producto_detalle(request, pk):
 class ProductosCrear (LoginRequiredMixin, CreateView):
     model = ProductosDetailing
     success_url = '../todos/'
-    fields = ['nombre','marca','precio','tipo','stock', 'descuento', 'imagen','descripcion']
+    fields = ['nombre','marca','precio','tipo','stock', 'imagen','descripcion']
     template_name = 'productos/productos_crear.html'
     
     
 class ProductosModificar (LoginRequiredMixin, UpdateView):
     model = ProductosDetailing
     success_url = '../todos/'
-    fields = ['nombre','marca','precio','tipo','stock', 'descuento', 'imagen', 'descripcion']
+    fields = ['nombre','marca','precio','tipo','stock', 'imagen', 'descripcion']
     template_name = 'productos/productos_crear.html'
     
     
