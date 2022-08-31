@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'productos',
     'clientes',
-    'servicios'
+    'servicios',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ LOGIN_URL = "/accounts/inicio_sesion/"
 #Configuración para imágenes
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
+

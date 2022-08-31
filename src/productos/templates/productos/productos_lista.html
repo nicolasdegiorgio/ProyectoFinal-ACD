@@ -32,7 +32,7 @@ Productos
                     <h5 class="fw-bolder"> {{producto.nombre}}</h5>
                     <!-- Product price-->
                     {% if request.user.is_authenticated %}
-                    {{producto.precio}}
+                    <p>{{producto.precio}}</p>
                     <a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a>
                     {%if request.user.is_superuser%}
                     <a href="{% url 'productos_modificar' producto.id %}"> Editar</a>

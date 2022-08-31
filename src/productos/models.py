@@ -1,6 +1,8 @@
 from datetime import datetime,timezone
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 class ProductosDetailing (models.Model):
@@ -12,6 +14,7 @@ class ProductosDetailing (models.Model):
     descuento = models.IntegerField(default=0)
     fecha_carga = models.DateTimeField(auto_now_add=True, null=True)
     imagen = models.ImageField(upload_to = 'productos_imagenes', null = True)
+    descripcion = RichTextField(null=True)
     
     
     #Defino el str para ver en el panel de administración

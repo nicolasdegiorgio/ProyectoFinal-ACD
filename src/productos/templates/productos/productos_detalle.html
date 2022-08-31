@@ -20,11 +20,18 @@ Ver mas: {{producto.nombre}}
           </div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
               <h2></h2>
-              <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+              <p class="lead mb-0">
+              {% if producto.descripcion%}
+              {{producto.descripcion | safe}}
+              {% else %}
+              El vendedor no ha incluido una descripción del producto
+              {%endif%}
+              </p>
+              
               <p>$ {{producto.precio}}</p>
               <p>Stock {{producto.stock}}</p>
-              <p>Actualización: {{producto.fecha_carga}}</p>
               <p>Vendedor: {{request.user}}</p>
+              <p>Actualización: {{producto.fecha_carga}}</p>
             </div>
       </div>
       </div>
