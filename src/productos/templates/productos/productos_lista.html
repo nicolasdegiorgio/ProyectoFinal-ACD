@@ -1,28 +1,44 @@
 {% extends 'productos/base.html' %}
 
 
+{%block title%}
+Productos
+{%endblock%}
+
+
 {% block productos %}
 
 
 {% for producto in object_list %}
 
+    {% if producto.count == 0 %}
+        <p>Ningun producto ha sido cargado aún</p>
+
+    {% endif %}
+    {% block header %}
+    
+    <p class="lead fw-normal text-white-50 mb-0">Estos son todos nuestros productos</p>
+    {% endblock %}
+
+
     <div class="col mb-5">
         <div class="card h-100">
-            <!-- Sale badge-->
-            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
             <!-- Product image-->
             <img class="card-img-top" src="/media/{{producto.imagen}}" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
                 <div class="text-center">
                     <!-- Product name-->
-                    <h5 class="fw-bolder"> {{producto.nombre}} <!--<a href="{% url 'productos_detalle' producto.id %}"> Ver mas</a> --></h5>
+                    <h5 class="fw-bolder"> {{producto.nombre}}</h5>
                     <!-- Product price-->
-                    
+                    {% if request.user.is_authenticated %}
                     {{producto.precio}}
                     <a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a>
+                    {%if request.user.is_superuser%}
                     <a href="{% url 'productos_modificar' producto.id %}"> Editar</a>
                     <a href="{% url 'productos_borrar' producto.id %}"> Eliminar</a>
+                    {% endif %}
+                    {% endif %}
                 </div>
             </div>
             

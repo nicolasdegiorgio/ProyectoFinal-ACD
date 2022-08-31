@@ -1,0 +1,51 @@
+{% extends 'productos/base.html' %}
+
+{%block title%}
+Desarroladores
+{%endblock%}
+
+{% block header %}
+                    <h1 class="display-4 fw-bolder">Nicolás De Giorgio</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Desarrolladore</p>
+                    {% endblock %}
+
+{% block detalle %}
+<section class="showcase">
+  <div class="container-fluid p-0">
+      <div class="row g-0">
+          
+          <div style="max-height:450px; max-width:450px; overflow: hidden">
+            <img style="max-width: 450px; max-height: 300px" src="/media/NDG.jpg" class="rounded float-right"/>
+          </div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              
+              <p class="lead mb-0"> Hola! Mi nombre es Nicolás, y antes que nada dejame agradecerte por estar visitando mi primer proyecto en Django. Este fue desarrollado para el cruso de Python de la plataforma Coderhouse y es mi primer acercamiento real con el mundo de 
+                la programación. Tengo 26 años y soy ingeniero mecánico, trabajando en contrucciones industriales en la ciudad de La Plata, Argentina. Se que este proyecto no es el mas "fachero" del mundo,
+                pero estoy orgulloso de haber llegado hasta este punto, y tengo muy en claro que hay mucho lugar para mejora. Así que te invito a seguir mi camino!
+              </p>
+              
+            </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item me-4">
+                        <a href="https://www.linkedin.com/in/nicol%C3%A1s-de-giorgio/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BzZvGbbzhQVKLJt0umbIVKQ%3D%3D"><i class="bi-linkedin fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <a href="https://github.com/nicolasdegiorgio?tab=repositories"><i class="bi-github fs-3"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+{%endblock%}

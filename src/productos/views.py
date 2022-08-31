@@ -21,6 +21,17 @@ from clientes.models import Avatar
 
 
 #Vista de inicio
+@login_required
+def base(request):
+    usuario = request.user
+    avatar = Avatar.objects.filter(usuario = usuario ).last()
+    
+    context = {
+        'avatar': avatar
+    }
+    
+    return render (request, 'productos/base.html', context)
+
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
@@ -31,14 +42,14 @@ def index (request):
             producto = ProductosDetailing.aplicar_descuento(self=producto)
             listado_productos_descuento.append(producto)
         
+    avatar = Avatar.objects.filter(usuario = request.user ).last()
     
     context = {
-        'productos': listado_productos_descuento
+        'productos': listado_productos_descuento,
+        'avatar':avatar
     }
     
-    if not request.user.is_anonymous:
-        avatar = Avatar.objects.filter(usuario = request.user ).last()
-        context.update({"imagen": avatar})
+    
     
     return render (request, 'productos/index.html', context)
 

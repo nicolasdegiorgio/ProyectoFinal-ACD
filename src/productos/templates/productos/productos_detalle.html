@@ -4,8 +4,39 @@
 Ver mas: {{producto.nombre}}
 {%endblock%}
 
+{% block header %}
+  <h1 class="display-4 fw-bolder">{{producto.nombre}}</h1>
+{% endblock %}
+
+
+
+{% block detalle %}
+<section class="showcase">
+  <div class="container-fluid p-0">
+      <div class="row g-0">
+          
+          <div style="max-height:450px; max-width:450px; overflow: hidden">
+            <img style="max-width: 450px; max-height: 300px" src="/media/{{producto.imagen}}" class="rounded float-right"/>
+          </div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2></h2>
+              <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+              <p>$ {{producto.precio}}</p>
+              <p>Stock {{producto.stock}}</p>
+              <p>Actualización: {{producto.fecha_carga}}</p>
+              <p>Vendedor: {{request.user}}</p>
+            </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+
+{%endblock%}
 
 {%block productos%}
+
+
 
 
 <h1 class="text-center">{{producto.nombre}}</h1>

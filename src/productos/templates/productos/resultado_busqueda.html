@@ -1,10 +1,50 @@
 {% extends 'productos/base.html' %}
 
-{% block productos %}
+{%block title%}
+Busqueda
+{%endblock%}
 
-    {% for producto in productos %}
-        <h5 style="color: blue ">{{producto.nombre}}</h5>
-        <p> $ {{producto.precio}}</p>
-    {%endfor%}  
 
+{% block header %}
+
+    <h1 class="display-4 fw-bolder">Buscar</h1>
+                    
 {% endblock %}
+
+
+
+{% block detalle %}
+
+{% for producto in productos %}
+
+    {% if producto is none %}
+        <p>No se ha encontrado ningun producto</p>
+    {% endif %}
+
+
+    <div class="col mb-5">
+        <div class="card h-100">
+            <!-- Sale badge-->
+            
+            <div style="max-height:450px; max-width:450px; overflow: hidden">
+                <img style="max-width: 450px; max-height: 300px" src="/media/{{producto.imagen}}" class="rounded float-right"/>
+            </div>
+            <!-- Product details-->
+            
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder"> {{producto.nombre}} <!--<a href="{% url 'productos_detalle' producto.id %}"> Ver mas</a> --></h5>
+                    <!-- Product price-->
+                    
+                    <p>$  {{producto.precio}}</p>
+                    <a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a>
+                    {%if request.user.is_superuser%}
+                    <a href="{% url 'productos_modificar' producto.id %}"> Editar</a>
+                    <a href="{% url 'productos_borrar' producto.id %}"> Eliminar</a>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+{% endfor %}
+{%endblock%}
+

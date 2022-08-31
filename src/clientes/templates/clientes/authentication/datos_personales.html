@@ -1,0 +1,33 @@
+{% extends 'productos/base.html' %}
+
+{%block title%}
+Datos de la cuenta
+{%endblock%}
+
+{% block header %}
+                    <h1 class="display-4 fw-bolder">{{request.user}}</h1>
+                    
+{% endblock %}
+
+
+{% block detalle %}
+<section class="showcase">
+  <div class="container-fluid p-0">
+      <div class="row g-0">
+          
+          <div style="max-height:450px; max-width:450px; overflow: hidden">
+            <img style="max-width: 450px; max-height: 300px" src="/media/{{avatar.imagen}}" class="rounded float-right"/>
+          </div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>{{request.user.first_name}}  {{request.user.last_name}}</h2>
+              <p class="lead mb-0"> {{request.user.email}}
+              </p>
+              <a href="{% url 'modificar_usuario' %}">Editar</a>
+              
+            </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+{% endblock %}

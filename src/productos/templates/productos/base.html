@@ -35,54 +35,52 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{% url 'productos_lista' %}">Todos</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'productos_crear' %}">Cargar</a></li>
                                 <li><a class="dropdown-item" href="{% url 'buscar_producto' %}">Buscar</a></li>
-                                <li><a class="dropdown-item" href="{% url 'agregar_avatar'%}">Avatar</a></li>
-                                
+                                {%if request.user.is_superuser%}
+                                <li><a class="dropdown-item" href="{% url 'productos_crear' %}">Cargar</a></li>
+                                {% endif %}
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Hola {{request.user}}!</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'modificar_usuario' %}">Editar tus opciones</a></li>
+                                <li><a class="dropdown-item" href="{% url 'datos_personales' %}">Datos de tu cuenta</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="{% url 'agregar_avatar'%}">Avatar</a></li>
                                 <li><a class="btn btn-primary text-center" href="{% url 'logout' %}">Cerrar sesión</a></li>
                             </ul>
                         </li>
-                        <img src="/media/{{imagen}}" alt="avatar">
+                        <img style="max-width: 30px; max-height: 30px" src="/media/{{avatar.imagen}}" alt="avatar">
 
                         {% else %}
 
                         <a class="btn btn-primary" href="{% url 'login' %}">Iniciar sesión</a>
                         <a class="btn btn-primary" href="{% url 'registro_usuario' %}">Registrate!</a>
-                    
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'productos_lista' %}">Todos</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'buscar_producto' %}">Buscar</a></li>
+                            </ul>
+                        </li>
                         {% endif %}
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-        
         </nav>
 
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
+                    {% block header %}
                     <h1 class="display-4 fw-bolder">All Cars Detailing</h1>
                     <p class="lead fw-normal text-white-50 mb-0">El lugar ideal para el cuidado de tu auto</p>
+                    {% endblock %}
                 </div>
             </div>
         </header>
         <!-- Section-->
+        {% block detalle %}
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -289,7 +287,7 @@
                 </div>
             </div>
         </section>
-
+{% endblock detalle %}
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 {% block comentarios %}
@@ -300,8 +298,19 @@
 
 
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="{% url 'about_me' %}">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

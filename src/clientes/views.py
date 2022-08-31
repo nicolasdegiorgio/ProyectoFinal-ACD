@@ -21,7 +21,10 @@ def crear_usuario(request):
     #Creamos la validacion del metodo para cargar el formulario
     if request.method == "GET":
         formulario = CrearUsuario()
-        return render(request, 'clientes/formulario_usuario.html', {'formulario': formulario})
+        context = {'formulario': formulario}
+        
+        
+        return render(request, 'clientes/formulario_usuario.html', context)
     
     
     #Una vez que se envia el formulario accedemos a los datos que van a través del POST
@@ -77,6 +80,8 @@ def resgistrar_usuario(request):
                 "error": "Formulario NO valido"
                 }
             return render(request, "clientes/autentication/registro.html", context)
+    
+    
         
 def iniciar_sesion (request):
     if request.method == 'GET':
@@ -114,6 +119,20 @@ def iniciar_sesion (request):
             }
             return render (request, 'clientes/authentication/login.html', context)
         
+
+@login_required
+def datos_personales (request):
+    usuario = request.user
+    
+    avatar = Avatar.objects.filter(usuario = request.user ).last()
+    
+    context = {
+        'usuario': usuario,
+        'avatar':avatar
+    }
+    
+    return render (request, 'clientes/authentication/datos_personales.html', context)
+
 
 @login_required
 def modificar_usuario(request):
@@ -189,3 +208,7 @@ def agregar_avatar (request):
             }           
         
         return render(request, 'productos/index.html', context)
+    
+    
+def about_me(request):
+    return render (request, 'clientes/about_me.html')

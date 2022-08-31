@@ -1,7 +1,17 @@
 {% extends 'productos/base.html' %}
 
+{%block title%}
+Carga
+{%endblock%}
+
+{% block header %}
+                    <h1 class="display-4 fw-bolder">Bienvenido  {{request.user}}</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Aqui podrás cargar tus productos a la venta</p>
+                    {% endblock %}
+
 {% block productos %}
 
+{% if request.user.is_superuser %}
 <form method="post">{% csrf_token %}
 
     {{ formulario.as_p }}
@@ -9,4 +19,7 @@
     <input type="submit" value="Cargar">
 </form>
 
+{%else%}
+<p>Usted no puede modificar los datos</p>
+{% endif %}
 {% endblock %}
