@@ -3,16 +3,14 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 
 #Generic views
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 #Forms 
-from productos.forms import CargaProducto, FormularioBusqueda, CommentForm
+from productos.forms import CommentForm
 
 #Decorators
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
 
 
 #Models

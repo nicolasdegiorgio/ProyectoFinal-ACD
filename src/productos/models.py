@@ -23,8 +23,6 @@ class ProductosDetailing (models.Model):
     
     
 
-            
-
 class Comentarios(models.Model):
     producto = models.ForeignKey(ProductosDetailing, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)

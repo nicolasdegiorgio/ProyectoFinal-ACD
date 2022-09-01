@@ -1,6 +1,5 @@
-from django.forms import Form, CharField, IntegerField, FloatField, Textarea, ModelForm
-from django.contrib.auth.models import User
-from datetime import datetime
+from django.forms import Form, CharField, IntegerField, FloatField, ModelForm
+
 
 from productos.models import Comentarios
 

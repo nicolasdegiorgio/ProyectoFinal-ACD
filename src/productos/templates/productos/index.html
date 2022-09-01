@@ -8,6 +8,7 @@ Inicio
 {% block productos %}
 
 {% for producto in productos  %}
+<div class="col mb-5">
         <!-- Product image-->
         <img class="card-img-top" src="/media/{{producto.imagen}}" alt="..." />
         <!-- Product details-->
@@ -21,7 +22,7 @@ Inicio
                 <p><a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a></p>
             </div>
         </div>
-
+    </div>
 
 {% endfor %}
 

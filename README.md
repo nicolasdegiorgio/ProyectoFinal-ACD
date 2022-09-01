@@ -1,27 +1,36 @@
 # Entrega-De-Giorgio
-Proyecto ACD (All Cars Detailing) para el proyecto final del curso de Python
+## Proyecto ACD (All Cars Detailing) para el proyecto final del curso de Python
 
-Bienvenido a mi primer entrega del proyecto final!
+Bienvenido a mi entrega del proyecto final!
 
 Te cuento un poco de que se trata:
-Este en una preentrega de mi segunda aplicación creada con python y django, las cuales estoy aprendiendo actualmente.
+Este en la entrega de mi segunda aplicación creada con python y django, las cuales estoy aprendiendo actualmente.
 Para este proyecto, plantee un ecommerce donde se pueden encontrar productos de detailing de vehiculos y distintos servicios que brindara la "empresa cliente".
 
-La app web, cuenta a su vez con 3 "django-apps" las cuales administran los 3 punteros del servicio:
+La app web, cuenta a su vez con 2 "django-apps" las cuales administran los 2 punteros del servicio:
 
-Usuarios o clientes
-Productos que se pueden comprar
-Servicios (turnos) que se brindan
+Usuarios
+Productos
 
-En la página de inicio, se entrará de lleno al listado de productos, lo cual considero como vista proncipal de la app (directamente al abrir la web desde la terminal).
+En la página de inicio muestra la cara de la pagina, con las ultimas entradas en productos (2) y las opciones de iniciar sesion o registrarse. A su vez, se podran ver todos los productos, sin poder realizar más acciones que intentar acceder al detalle del mismo, en el cual te pedirá loguearte.
 
-En la parte superior se podrán ver los tres punteros para navegar a través de la página.
-El boton Productos vuelve siempre a la url principal, la cual es un template con herencia desde base.html (por ahora todas lo son, falta embellecer el sitio), y lo que verdaderamente se carga es index.html
+En la parte superior, una vez logueado, se podrán ver los botones para navegar a través de la página (el navbar cambia a partir del logueo).
+Aqui tambien se separa en tipos de usuarios, por un lado los superuser o administradores del local, que podran cargar, modificar o borrar entradas o produtos, además de realizar comentarios en cada uno. Por otro lado, los usuarios comunes solo podrán acceder a los detalles del mismo.
 
-Siguiendo con los productos, se puede realizar la carga de nuevos productos desde el menu desplegable de la barra superior, o desde http://127.0.0.1:8000/cargarproducto/
+Al dar click en el boton "ver más" ("detalle/id") de cada producto (en el boton Productos-->Todos "todos/"), se podra acceder al detalle del prducto en donde se indica: Nombre del producto, stock, precio, fecha de carga, vendedor (usuario que lo cargó) y una breve descripción del mismo.
+Además de ver más, siendo administrador del sitio se podra editar ("actualizar/id")el producto, modificando todos sus campos donde la descripción posee un editor de texto avanzado para darle el formato que el vendedor desee. También puede borrar los mismos utilizando el boton de elminar ("borrar/id"). Todos los ususarios pueden emitir comentarios en cualquier producto.
+En el boton Productos también se encuentra el acceso a la carga de estos ("cargar"), que funciona de manera similar a la modificación pero crea una nueva entrada en el DB.
+En el boton de Buscar o en "busqueda/", se puede acceder a la busqueda simple de productos.
 
-En el boton de Buscar o en http://127.0.0.1:8000/busqueda/ , se puede acceder a la busqueda simple de productos, el cual renderiza en primer lugar formulario_busqueda.html y luego renderiza resultado_busqueda.html
+Apartado "accounts/":
+    Este es la app que gestiona los usuarios creados.
+    Al momento de registrarse se crea un nuevo usuario el cual tomará como datos un username, email, contraseña, nombre y apellido.("registrate/")
+    Para loguearse, se necesitará username y contraseña. ("inicio_sesion/")
+    Algunas vistas protegidas llevarán directamente a la pagina de login para acceder.
+    Menu desplegable "Hola user!": aqui se encuentran tres opciones.
+        Ver los datos personales, que dentro de este se pueden modificar.("profile/")
+        Cargar un avatar o imágen de perfil que se mostrará al lado de este menú y en el apartado anterior.("agregar_avatar/")
+        Cerrar sesión. ("cerrar_sesion/")
 
-Por el lado de los usuarios o clientes, se puede acceder desde el menu desplegable o desde http://127.0.0.1:8000/clientes/clientes/. En la parte inferior se puede acceder al formulario de carga de los mismos, o bien desde http://127.0.0.1:8000/clientes/crear/
+Por ultimo, en el footer de la página, se puede acceder al apartado "About me" ("about_me")donde cuento un poc de mí y de como se creó el proyecto
 
-Por ultimo, los servicios van a funcionar de la misma manera que los clientes, pero con sus correspondientes apartados. Por ahora solo es una lista de los turnos creados.
