@@ -14,6 +14,9 @@ urlpatterns = [
     path('agregar_avatar/', agregar_avatar, name = 'agregar_avatar'),
     path('cerrar_sesion/', LogoutView.as_view(template_name='productos/index.html'), name='logout'),
     
+    
+    #footer
     path('about_me/', about_me, name='about_me'),
+    path('contacto/', contacto, name='contacto'),
     
 ]

@@ -1,0 +1,38 @@
+{% extends 'productos/base.html' %}
+
+{%block title%}
+Contacto
+{%endblock%}
+
+{% block header %}
+  <h1 class="display-4 fw-bolder">Contacto</h1>
+{% endblock %}
+
+
+
+{% block detalle %}
+<section class="showcase">
+  <div class="container-fluid p-0">
+      <div class="row g-0">
+          
+        
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2></h2>
+              <p class="lead mb-0">
+              <form method="post">
+
+                {% csrf_token %}
+
+                {{ formulario.as_p | safe }}
+
+                <input type="submit" value="Enviar">
+
+              </form>
+            </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+
+{%endblock%}

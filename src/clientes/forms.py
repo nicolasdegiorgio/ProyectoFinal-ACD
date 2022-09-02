@@ -1,7 +1,8 @@
 from dataclasses import fields
-from django.forms import Form, CharField, IntegerField, EmailField, DateField, PasswordInput, ImageField
+from django.forms import Form, CharField, IntegerField, EmailField, DateField, PasswordInput, ImageField, ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from clientes.models import Contacto
 
 
 class CrearUsuario (Form):
@@ -37,4 +38,10 @@ class UserEditForm(UserCreationForm):
         
 class AvatarForm(Form):
     imagen = ImageField()
-        
+    
+    
+    
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contacto
+        fields=['motivo_contacto','contenido']

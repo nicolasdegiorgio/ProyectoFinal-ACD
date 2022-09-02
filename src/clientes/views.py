@@ -1,9 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from clientes.forms import CrearUsuario
-from clientes.models import Avatar
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import render, redirect
+from clientes.forms import ContactForm
+from clientes.models import Avatar, Contacto
+
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
 #Imports para registros y logeo de usuarios
@@ -173,3 +173,28 @@ def agregar_avatar (request):
     
 def about_me(request):
     return render (request, 'clientes/about_me.html')
+
+
+def contacto(request):
+    if request.method == 'GET':
+        formulario = ContactForm()
+        context ={
+            'formulario':formulario
+        }
+        return render (request, 'clientes/contacto.html', context)
+    
+    else:
+        formulario = ContactForm(request.POST)
+        
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            
+            
+            motivo_contacto = data.get('motivo_contacto')
+            contenido = data.get('contenido')
+            
+            contacto = Contacto(usuario=request.user,motivo_contacto=motivo_contacto,contenido=contenido)
+            contacto.save()
+            
+            
+            return redirect('inicio')
