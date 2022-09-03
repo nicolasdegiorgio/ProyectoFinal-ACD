@@ -32,5 +32,5 @@ Apartado "accounts/":
         Cargar un avatar o imágen de perfil que se mostrará al lado de este menú y en el apartado anterior.("agregar_avatar/")
         Cerrar sesión. ("cerrar_sesion/")
 
-Por ultimo, en el footer de la página, se puede acceder al apartado "About me" ("about_me")donde cuento un poc de mí y de como se creó el proyecto
+Por ultimo, en el footer de la página, se puede acceder al apartado "About me" ("about_me")donde cuento un poc de mí y de como se creó el proyecto, y a su vez un formulario de contacto para postularse como vendedor o ser comprador indicando los items solicitados, mensajes que llegan al admin del sitio.
 

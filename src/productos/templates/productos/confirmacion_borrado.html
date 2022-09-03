@@ -5,7 +5,7 @@ Confirmar borrado
 {%endblock%}
 
 
-{% block contenido %}
+{% block productos %}
     
     <form method="post">
         
@@ -13,8 +13,8 @@ Confirmar borrado
 
         <p>Se eliminará {{object}}</p>
         <input type="submit" value="Confirmar">
-        <a href="{% url 'productos' %}">Volver</a>
+        <a href="{% url 'productos_lista' %}">Volver</a>
 
     </form>
 
-{% endblock contenido %}
+{% endblock%}
