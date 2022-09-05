@@ -4,26 +4,29 @@
 Inicio
 {%endblock%}
 
+{% block inicio %}
+<h6 class="display-6 text-center" color="black" >Estos son nuestros nuevos productos</h6>
+{% endblock%}
+
 
 {% block productos %}
-
 {% for producto in productos  %}
 <div class="col mb-5">
-        <!-- Product image-->
-        <img class="card-img-top" src="/media/{{producto.imagen}}" alt="..." />
-        <!-- Product details-->
-        <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">{{producto.nombre}}</h5>                
-                <!-- Product price-->
-                $ {{producto.precio}}
-                <p>Stock: {{producto.stock}}</p>
-                <p><a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a></p>
-            </div>
+    <!-- Product image-->
+    <img class="card-img-top" src="/media/{{producto.imagen}}" alt="..." />
+    <!-- Product details-->
+    <div class="card-body p-4">
+        <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder">{{producto.nombre}}</h5>                
+            <!-- Product price-->
+            $ {{producto.precio}}
+            <p>Stock: {{producto.stock}}</p>
+            <p><a href="{% url 'productos_detalle' producto.pk %}"> Ver mas</a></p>
         </div>
     </div>
+</div>
 
 {% endfor %}
 
-{% endblock %}
+{% endblock productos%}

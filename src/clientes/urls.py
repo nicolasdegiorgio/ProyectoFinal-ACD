@@ -12,7 +12,7 @@ urlpatterns = [
     path('profile/', datos_personales, name = 'datos_personales'),
     path('profile/modificar', modificar_usuario, name = 'modificar_usuario'),
     path('agregar_avatar/', agregar_avatar, name = 'agregar_avatar'),
-    path('cerrar_sesion/', LogoutView.as_view(template_name='productos/index.html'), name='logout'),
+    path('cerrar_sesion/', LogoutView.as_view(template_name='productos/cerrar_sesion.html'), name='logout'),
     
     
     #footer

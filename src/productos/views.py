@@ -30,6 +30,8 @@ def base(request):
     
     return render (request, 'productos/base.html', context)
 
+
+
 def index (request):
     
     listado_productos=ProductosDetailing.objects.all()
@@ -39,13 +41,15 @@ def index (request):
         if i <= 1:
             listado_productos_nuevo.append(producto)
         
-        
-    avatar = Avatar.objects.filter(usuario = request.user ).last()
-    
     context = {
         'productos': listado_productos_nuevo,
-        'avatar':avatar
+        
     }
+    if not request.user.is_anonymous:
+        avatar = Avatar.objects.filter(usuario = request.user ).last()
+        context.update({"avatar": avatar})  
+        
+    
        
     return render (request, 'productos/index.html', context)
 

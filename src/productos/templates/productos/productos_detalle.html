@@ -32,6 +32,7 @@ Ver mas: {{producto.nombre}}
               <p>Stock {{producto.stock}}</p>
               <p>Vendedor: {{request.user}}</p>
               <p>Actualización: {{producto.fecha_carga}}</p>
+              <a href="{% url 'productos_lista' %}">Todos</a>
             </div>
       </div>
       </div>
